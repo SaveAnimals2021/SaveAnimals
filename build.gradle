@@ -95,6 +95,9 @@ dependencies {
     // google-cloud-dialogflow
     compile group: 'com.google.cloud', name: 'google-cloud-dialogflow', version: '2.4.3'
 
+    // jsoup
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
 
 }
 
