@@ -31,6 +31,10 @@ public class AnimalInfoVO {
     private String special;
     private String color;
 
+    // redirect할수 있는 원래 사이트
+    private String originURL;
+    // 상태
+    private Boolean isAdopted; // 입양된 동물들은 Archive 게시판에 저장
 
     private Date date;
     private Date regdate;

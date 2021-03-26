@@ -5,6 +5,8 @@ import org.sa.animal.mapper.AnimalInfoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Service
 public class AnimalServiceImpl implements AnimalService{
 
@@ -18,5 +20,10 @@ public class AnimalServiceImpl implements AnimalService{
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<AnimalInfoDTO> getAllList() {
+        return toDTOList(mapper.getAllList());
     }
 }

@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +36,11 @@ public class AnimalInfoDTO {
     @Builder.Default
     private List<String> imageUrlList = new ArrayList<>();
     private String imageType;
+
+    // redirect할수 있는 원래 사이트
+    private String originURL;
+    // 상태
+    private Boolean isAdopted; // 입양된 동물들은 Archive 게시판에 저장
 
     private String date;
     private Date regdate;

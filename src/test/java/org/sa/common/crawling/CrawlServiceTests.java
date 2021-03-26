@@ -56,6 +56,7 @@ public class CrawlServiceTests {
             iJoaCrawlService.getAnimalList().forEach(info-> dao.addAnimal(info));
 
             dao.getList().forEach(info-> service.register(info));
+
         }  catch (Exception e){
             e.printStackTrace();
         }

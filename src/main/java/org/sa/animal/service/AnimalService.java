@@ -6,11 +6,14 @@ import org.sa.animal.dto.AnimalInfoDTO;
 import org.sa.common.util.DateFormatter;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public interface AnimalService {
 
     void register(AnimalInfoDTO dto);
+    List<AnimalInfoDTO> getAllList();
 
     default AnimalInfoVO toDomain(AnimalInfoDTO dto) throws Exception{
         Date date = DateFormatter.fromStringToDate(dto.getDate());
@@ -28,27 +31,44 @@ public interface AnimalService {
             isNeu = 2;
         }
 
-        // ========== 백신 여부
-        
         return AnimalInfoVO.builder()
                 .animalNumber(dto.getAnimalNumber()).animalCode(dto.getAnimalCode()).type(dto.getType()).serviceName(dto.getServiceName())
                 .name(dto.getName()).species(dto.getSpecies()).sex(dto.getSex()).age(dto.getAge()).weight(dto.getWeight())
                 .special(dto.getSpecial()).color(dto.getColor()).date(date).regdate(dto.getRegdate()).updatedate(dto.getUpdatedate())
-                .isNeutralized(isNeu)
+                .isNeutralized(isNeu).originURL(dto.getOriginURL()).isAdopted(dto.getIsAdopted())
                 .build();
     }
-//
-//    default AnimalInfoDTO toDTO(AnimalInfoVO vo) {
-//        AnimalInfoDTO dto = new AnimalInfoDTO();
-//        dto.setBno(vo.getBno());
-//        dto.setTitle(vo.getTitle());
-//        dto.setContent(vo.getContent());
-//        dto.setWriter(vo.getWriter());
-//        dto.setReplyCount(vo.getReplyCount());
-//
-//        dto.setRegdate(dto.getRegdate());
-//        dto.setUpdatedate(dto.getUpdatedate());
-//
-//        return dto;
-//    }
+
+    default AnimalInfoDTO toDTO(AnimalInfoVO vo) {
+        AnimalInfoDTO animalDTO = new AnimalInfoDTO();
+
+        animalDTO.setAnimalNumber(vo.getAnimalNumber());
+        animalDTO.setAnimalCode(vo.getAnimalCode());
+        animalDTO.setType(vo.getType());
+        animalDTO.setServiceName(vo.getServiceName());
+        animalDTO.setName(vo.getName());
+        animalDTO.setSpecies(vo.getSpecies());
+        animalDTO.setSex(vo.getSex());
+        animalDTO.setAge(vo.getAge());
+        animalDTO.setWeight(vo.getWeight());
+        animalDTO.setSpecial(vo.getSpecial());
+        animalDTO.setColor(vo.getColor());
+        animalDTO.setDate(DateFormatter.fromDateToString(vo.getDate()));
+        animalDTO.setRegdate(vo.getRegdate());
+        animalDTO.setUpdatedate(vo.getUpdatedate());
+        animalDTO.setIsNeutralized(vo.getIsNeutralized() + "");
+        animalDTO.setIsVaccinated(vo.getIsVaccinated() + "");
+        animalDTO.setIsAdopted(vo.getIsAdopted());
+        animalDTO.setOriginURL(vo.getOriginURL());
+
+
+
+        return animalDTO;
+    }
+
+    default List<AnimalInfoDTO> toDTOList(List<AnimalInfoVO> animalList) {
+        return animalList.stream().map(a -> {
+            return toDTO(a);
+        }).collect(Collectors.toList());
+    }
 }

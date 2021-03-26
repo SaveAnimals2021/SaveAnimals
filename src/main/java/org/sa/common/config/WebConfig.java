@@ -1,6 +1,7 @@
 package org.sa.common.config;
 
 import org.sa.animal.config.AnimalInfoConfig;
+import org.sa.batch.config.AnimalJobConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer{
@@ -8,7 +9,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 
-		return new Class[] {CommonConfig.class, AnimalInfoConfig.class};
+		return new Class[] {CommonConfig.class, AnimalInfoConfig.class, AnimalJobConfig.class};
 	}
 
 	@Override

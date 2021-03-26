@@ -14,7 +14,9 @@
         ]]>
 	</insert>
 
-
+	<select id="getAllList" resultType="org.sa.animal.domain.AnimalInfoVO">
+		select * from tbl_animal
+	</select>
 
 
 </mapper>
