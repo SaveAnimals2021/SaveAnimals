@@ -7,5 +7,8 @@ import java.util.List;
 public interface AnimalInfoMapper {
 
     void register(AnimalInfoVO vo);
+
+    void setIsAdopted(AnimalInfoVO vo);
+
     List<AnimalInfoVO> getAllList();
 }

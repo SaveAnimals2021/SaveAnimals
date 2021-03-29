@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 public interface AnimalService {
 
     void register(AnimalInfoDTO dto);
+
+    void setIsAdopted(AnimalInfoDTO dto);
+
     List<AnimalInfoDTO> getAllList();
 
     default AnimalInfoVO toDomain(AnimalInfoDTO dto) throws Exception{

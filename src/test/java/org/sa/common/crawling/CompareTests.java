@@ -63,8 +63,6 @@ public class CompareTests {
 
         log.info("====================== CRAWL OVER ======================");
 
-
-
         // DB LIST
         List<AnimalInfoDTO> dbList =  service.getAllList();
 
@@ -102,7 +100,7 @@ public class CompareTests {
         for(int i = 0; i < dsize; ++i){
             // 1번상황 = modify해서 상태를 isAdopted = true; 로 바꾼다.
             dbList.get(i).setIsAdopted(true);
-
+            service.setIsAdopted(dbList.get(i));
         }
 
         log.info("crawledList : " + crawledList);

@@ -23,6 +23,15 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
+    public void setIsAdopted(AnimalInfoDTO dto) {
+        try {
+            mapper.setIsAdopted(toDomain(dto));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<AnimalInfoDTO> getAllList() {
         return toDTOList(mapper.getAllList());
     }
