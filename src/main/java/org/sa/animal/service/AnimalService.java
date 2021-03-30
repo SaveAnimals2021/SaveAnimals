@@ -1,9 +1,10 @@
 package org.sa.animal.service;
 
 
-import org.sa.animal.domain.AnimalInfoVO;
-import org.sa.animal.dto.AnimalInfoDTO;
+import org.sa.animal.domain.MissingAnimalVO;
+import org.sa.animal.dto.MissingAnimalDTO;
 import org.sa.common.util.DateFormatter;
+import org.sa.common.util.SimpleDateFormatter;
 
 import java.util.Date;
 import java.util.List;
@@ -12,38 +13,31 @@ import java.util.stream.Collectors;
 
 public interface AnimalService {
 
-    void register(AnimalInfoDTO dto);
+    void register(MissingAnimalDTO dto);
 
-    void setIsAdopted(AnimalInfoDTO dto);
+    void setIsAdopted(MissingAnimalDTO dto);
 
-    List<AnimalInfoDTO> getAllList();
+    List<MissingAnimalDTO> getAllList();
 
-    default AnimalInfoVO toDomain(AnimalInfoDTO dto) throws Exception{
-        Date date = DateFormatter.fromStringToDate(dto.getDate());
+    default MissingAnimalVO toDomain(MissingAnimalDTO dto) throws Exception{
+        Date missingDate = SimpleDateFormatter.fromStringToDate(dto.getMissingDate());
+        Date rescueDate = SimpleDateFormatter.fromStringToDate(dto.getRescueDate());
+        Date regDate = SimpleDateFormatter.fromStringToDate(dto.getRegDate());
+        Date updateDate = SimpleDateFormatter.fromStringToDate(dto.getUpdateDate());
 
-        // ========== 중성화 여부
-        String instr = dto.getIsNeutralized();
-        Integer isNeu = 0;
 
-        // 0=안했음, 1=했음, 2= 확인불가
-        if(null == instr || instr.contains("x") || instr.contains("안했음") || instr.contains("X")){
-            isNeu = 0;
-        }else if(instr.contains("O") || instr.contains("했음") || instr.contains("o") || instr.contains("ㅇ")){
-            isNeu = 1;
-        } else{
-            isNeu = 2;
-        }
 
-        return AnimalInfoVO.builder()
+        return MissingAnimalVO.builder()
                 .animalNumber(dto.getAnimalNumber()).animalCode(dto.getAnimalCode()).type(dto.getType()).serviceName(dto.getServiceName())
-                .name(dto.getName()).species(dto.getSpecies()).sex(dto.getSex()).age(dto.getAge()).weight(dto.getWeight())
-                .special(dto.getSpecial()).color(dto.getColor()).date(date).regdate(dto.getRegdate()).updatedate(dto.getUpdatedate())
-                .isNeutralized(isNeu).originURL(dto.getOriginURL()).isAdopted(dto.getIsAdopted())
+                .name(dto.getName()).species(dto.getSpecies()).sex(dto.getSex()).age(dto.getAge()).situation(dto.getSituation())
+                .special(dto.getSpecial()).color(dto.getColor()).missingDate(missingDate).regDate(regDate).updateDate(updateDate)
+                .originURL(dto.getOriginURL()).missingLocation(dto.getMissingLocation()).rescueLocation(dto.getRescueLocation()).rescueDate(rescueDate)
+                .rescueStatus(dto.getRescueStatus()).bno(dto.getBno()).guardianName(dto.getGuardianName()).phoneNumber(dto.getPhoneNumber())
                 .build();
     }
 
-    default AnimalInfoDTO toDTO(AnimalInfoVO vo) {
-        AnimalInfoDTO animalDTO = new AnimalInfoDTO();
+    default MissingAnimalDTO toDTO(MissingAnimalVO vo) {
+        MissingAnimalDTO animalDTO = new MissingAnimalDTO();
 
         animalDTO.setAnimalNumber(vo.getAnimalNumber());
         animalDTO.setAnimalCode(vo.getAnimalCode());
@@ -53,23 +47,28 @@ public interface AnimalService {
         animalDTO.setSpecies(vo.getSpecies());
         animalDTO.setSex(vo.getSex());
         animalDTO.setAge(vo.getAge());
-        animalDTO.setWeight(vo.getWeight());
         animalDTO.setSpecial(vo.getSpecial());
         animalDTO.setColor(vo.getColor());
-        animalDTO.setDate(DateFormatter.fromDateToString(vo.getDate()));
-        animalDTO.setRegdate(vo.getRegdate());
-        animalDTO.setUpdatedate(vo.getUpdatedate());
-        animalDTO.setIsNeutralized(vo.getIsNeutralized() + "");
-        animalDTO.setIsVaccinated(vo.getIsVaccinated() + "");
-        animalDTO.setIsAdopted(vo.getIsAdopted());
+
+        animalDTO.setMissingDate(DateFormatter.fromDateToString(vo.getMissingDate()));
+        animalDTO.setMissingLocation(vo.getMissingLocation());
+        animalDTO.setRegDate(DateFormatter.fromDateToString(vo.getRegDate()));
+        animalDTO.setUpdateDate(DateFormatter.fromDateToString(vo.getUpdateDate()));
         animalDTO.setOriginURL(vo.getOriginURL());
 
+        animalDTO.setSituation(vo.getSituation());
+        animalDTO.setRescueStatus(vo.getRescueStatus());
+        animalDTO.setBno(vo.getBno());
+        animalDTO.setGuardianName(vo.getGuardianName());
+        animalDTO.setPhoneNumber(vo.getPhoneNumber());
 
+        animalDTO.setRescueDate(DateFormatter.fromDateToString(vo.getRescueDate()));
+        animalDTO.setRescueLocation(vo.getRescueLocation());
 
         return animalDTO;
     }
 
-    default List<AnimalInfoDTO> toDTOList(List<AnimalInfoVO> animalList) {
+    default List<MissingAnimalDTO> toDTOList(List<MissingAnimalVO> animalList) {
         return animalList.stream().map(a -> {
             return toDTO(a);
         }).collect(Collectors.toList());

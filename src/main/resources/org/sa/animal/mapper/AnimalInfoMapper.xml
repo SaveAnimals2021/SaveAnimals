@@ -9,14 +9,20 @@
 	<!-- INSERT -->
 	<insert id="register" >
 		<![CDATA[
-            insert into tbl_animal (animalCode, serviceName, type, name, species, sex, age, weight, special, color, date)
-            values (#{animalCode}, #{serviceName}, #{type}, #{name}, #{species}
-            , #{sex}, #{age}, #{weight}, #{special}, #{color}, #{date})
+            insert into tbl_animal (animalCode, serviceName, type, name, species,
+                                    sex, age, special, color, situation,
+                                    originURL, missingDate, missingLocation, rescueDate,
+                                    rescueLocation, phoneNumber, guardianName, bno, rescueStatus)
+
+            values (#{animalCode}, #{serviceName}, #{type}, #{name}, #{species},
+                    #{sex}, #{age}, #{special}, #{color}, #{situation},
+                    #{originURL}, #{missingDate}, #{missingLocation}, #{rescueDate},
+                    #{rescueLocation}, #{phoneNumber}, #{guardianName}, #{bno}, #{rescueStatus})
         ]]>
 	</insert>
 
 	<!-- MODIFY -->
-	<update id="setIsAdopted" parameterType="Board">
+	<update id="setIsAdopted">
 		<![CDATA[
 		update tbl_animal set updatedate = now(), isAdopted = #{isAdopted}
 		where animalNumber = #{animalNumber}

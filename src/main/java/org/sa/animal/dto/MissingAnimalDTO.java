@@ -1,37 +1,34 @@
 package org.sa.animal.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnimalInfoDTO {
+public class MissingAnimalDTO {
     private Integer animalNumber;
 
     private String animalCode;
     private String serviceName;
 
-    private String type; // 개
-    private String name; // 개
+    private String type;
+    private String name;
 
     @Builder.Default
     private String species = "모름"; // 진도
     private String sex; // 암컷
-    private String isVaccinated;
-    private String isNeutralized; // 중성화 X
     private String age; // 2살
-    private String weight; // 20.6kg
     private String special;
-    private String color;
+    @Builder.Default
+    private String color = "미기재";
 
     @Builder.Default
     private List<String> imageUrlList = new ArrayList<>();
@@ -39,11 +36,21 @@ public class AnimalInfoDTO {
 
     // redirect할수 있는 원래 사이트
     private String originURL;
+
+
+    private String missingDate;
+    private String missingLocation;
+
+    private String rescueDate;
+    private String rescueLocation;
+
+    private String phoneNumber;
+    private String guardianName;
+    private Integer bno;
+
+    private String regDate;
+    private String updateDate;
     // 상태
-    private Boolean isAdopted; // 입양된 동물들은 Archive 게시판에 저장
-
-    private String date;
-    private String regdate;
-    private String updatedate;
-
+    private Integer rescueStatus;
+    private String situation;
 }

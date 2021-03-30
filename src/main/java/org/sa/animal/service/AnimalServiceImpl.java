@@ -1,9 +1,9 @@
 package org.sa.animal.service;
 
-import org.sa.animal.dto.AnimalInfoDTO;
+import org.sa.animal.dto.MissingAnimalDTO;
 import org.sa.animal.mapper.AnimalInfoMapper;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class AnimalServiceImpl implements AnimalService{
     AnimalInfoMapper mapper;
 
     @Override
-    public void register(AnimalInfoDTO dto) {
+    public void register(MissingAnimalDTO dto) {
         try {
             mapper.register(toDomain(dto));
         } catch (Exception e){
@@ -23,7 +23,7 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public void setIsAdopted(AnimalInfoDTO dto) {
+    public void setIsAdopted(MissingAnimalDTO dto) {
         try {
             mapper.setIsAdopted(toDomain(dto));
         } catch (Exception e){
@@ -32,7 +32,7 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public List<AnimalInfoDTO> getAllList() {
+    public List<MissingAnimalDTO> getAllList() {
         return toDTOList(mapper.getAllList());
     }
 }

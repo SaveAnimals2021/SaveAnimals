@@ -2,7 +2,7 @@ package org.sa.common.crawling.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.sa.animal.dto.AnimalInfoDTO;
+import org.sa.animal.dto.MissingAnimalDTO;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -17,13 +17,13 @@ public abstract class CrawlService {
 
     abstract void doCrawl() throws Exception;
 
-    protected List<AnimalInfoDTO> animalList;
+    protected List<MissingAnimalDTO> animalList;
 
     public CrawlService(){
         animalList = new ArrayList<>();
     }
 
-    public List<AnimalInfoDTO> getAnimalList() {
+    public List<MissingAnimalDTO> getAnimalList() {
         return animalList;
     }
 
@@ -94,8 +94,8 @@ public abstract class CrawlService {
         return doc;
     }
 
-    protected static void setAnimalCode(AnimalInfoDTO info){
-        String code = info.getAge() + info.getSex() + info.getSpecies() + info.getDate();
+    protected static void setAnimalCode(MissingAnimalDTO info){
+        String code = info.getName() + info.getSex() + info.getSpecies() + info.getMissingDate();
         info.setAnimalCode(code);
     }
 

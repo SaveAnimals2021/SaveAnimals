@@ -133,9 +133,9 @@ public class KarmaCrawlService extends CrawlService{
                 .serviceName(serviceName)
                 .build();
 
-        setAnimalCode(info);
+        // setAnimalCode(info);
 
-        animalList.add(info);
+        // animalList.add(info);
 
     }
 

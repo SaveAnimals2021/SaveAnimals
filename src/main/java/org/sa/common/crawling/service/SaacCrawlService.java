@@ -142,9 +142,9 @@ public class SaacCrawlService extends CrawlService{
                     }
                 }
 
-                setAnimalCode(info);
+               //  setAnimalCode(info);
 
-                animalList.add(info);
+                // animalList.add(info);
             });
 
         }

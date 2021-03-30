@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Log4j
-public class DateFormatter {
-    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+public class SimpleDateFormatter {
+    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
     // static SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy/MM/dd");
 
     public static String parseToWords(Date date) {
@@ -59,7 +59,7 @@ public class DateFormatter {
     public static Date fromStringToDate(String str) throws Exception {
         return null == str || str.length() == 0 ? null : formatter.parse(str);
     }
-    
+
     public static Boolean checkInThreeMonths(Date date){
 
         Boolean isInThree = false;
@@ -77,4 +77,25 @@ public class DateFormatter {
 
         return isInThree;
     }
+
+
+    public static String makeDateFormat(String str){
+        String[] arr = str.split("/");
+
+        if(arr.length == 1){
+            char[] charArr = str.toCharArray();
+            String result = charArr[0] + charArr[1] + charArr[2] + charArr[3] + "/" + charArr[4] + charArr[5] + "/" + charArr[6] + charArr[7];
+            return result;
+        } else {
+            if (arr[1].length() < 2) {
+                arr[1] = "0" + arr[1];
+            }
+            if (arr[2].length() < 2) {
+                arr[2] = "0" + arr[2];
+            }
+
+            return arr[0]+"/"+arr[1]+"/"+arr[2];
+        }
+    }
+
 }

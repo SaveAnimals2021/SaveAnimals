@@ -107,9 +107,9 @@ public class KaraCrawlService extends CrawlService{
                     .name(name).imageUrlList(imageList).imageType("jpg").serviceName(serviceName)
                     .build();
 
-            setAnimalCode(info);
+            // setAnimalCode(info);
 
-            animalList.add(info);
+            // animalList.add(info);
         }
 
 

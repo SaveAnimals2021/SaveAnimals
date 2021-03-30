@@ -145,8 +145,8 @@ public class IJoaCrawlService extends CrawlService{
                 //AnimalInfo에 값 추가
                 animalInfoDTO.setImageUrlList(imgUrl);
 
-                setAnimalCode(animalInfoDTO);
-                animalList.add(animalInfoDTO);
+                // setAnimalCode(animalInfoDTO);
+                 // animalList.add(animalInfoDTO);
 
             }//end if
 

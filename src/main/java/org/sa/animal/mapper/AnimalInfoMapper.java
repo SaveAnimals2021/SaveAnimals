@@ -1,14 +1,14 @@
 package org.sa.animal.mapper;
 
-import org.sa.animal.domain.AnimalInfoVO;
+import org.sa.animal.domain.MissingAnimalVO;
 
 import java.util.List;
 
 public interface AnimalInfoMapper {
 
-    void register(AnimalInfoVO vo);
+    void register(MissingAnimalVO vo);
 
-    void setIsAdopted(AnimalInfoVO vo);
+    void setIsAdopted(MissingAnimalVO vo);
 
-    List<AnimalInfoVO> getAllList();
+    List<MissingAnimalVO> getAllList();
 }
