@@ -13,13 +13,20 @@ public class SaController {
 
     //private final
 
-    @GetMapping("/list")
+    @GetMapping("/home")
     public String getList(Model model) {
 
-        log.info("list....................");
+        log.info("home....................");
 
-        return "/sa/list";
-                //new ResponseEntity<String>("success",HttpStatus.OK);
+        return "/sa/home";
+    }
+
+    @GetMapping("/static")
+    public String getStatic(Model model) {
+
+        log.info("static....................");
+
+        return "/sa/static";
     }
 
 }
