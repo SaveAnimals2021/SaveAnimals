@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.sa.animal.mapper.AnimalInfoMapper">
+
+	<insert id="register" >
+		<![CDATA[
+            insert into tbl_animal (animalCode, serviceName, type, name, species, sex, age, weight, special, color, date)
+            values (#{animalCode}, #{serviceName}, #{type}, #{name}, #{species}
+            , #{sex}, #{age}, #{weight}, #{special}, #{color}, #{date})
+        ]]>
+	</insert>
+
+
+
+
+</mapper>
